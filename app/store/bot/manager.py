@@ -1,14 +1,15 @@
-import typing
-
-from app.store.vk_api.dataclasses import Update
-
-if typing.TYPE_CHECKING:
-    from app.web.app import Application
+from app.store.vk_api.dataclasses import Message, Update
+from app.web.models.application import Application
 
 
 class BotManager:
-    def __init__(self, app: "Application"):
+    def __init__(self, app: Application):
         self.app = app
 
     async def handle_updates(self, updates: list[Update]):
-        raise NotImplementedError
+        for update in updates:
+            if update.type == "message_new":
+                message = Message(
+                    update.object.message.from_id, update.object.message.text
+                )
+                await self.app.store.vk_api.send_message(message)

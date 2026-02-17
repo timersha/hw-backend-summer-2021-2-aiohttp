@@ -3,15 +3,19 @@ from dataclasses import dataclass
 
 @dataclass
 class Theme:
-    id: int | None
+    id: int
     title: str
 
 
 @dataclass
-class Question:
-    pass
+class Answer:
+    title: str
+    is_correct: bool
 
 
 @dataclass
-class Answer:
-    pass
+class Question:
+    id: int
+    title: str
+    theme_id: int
+    answers: list[Answer]

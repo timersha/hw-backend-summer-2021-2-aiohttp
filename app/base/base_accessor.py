@@ -1,20 +1,17 @@
-import typing
 from logging import getLogger
 
-if typing.TYPE_CHECKING:
-    from app.web.app import Application
+from app.web.models.application import Application
 
 
 class BaseAccessor:
-    def __init__(self, app: "Application", *args, **kwargs):
+    def __init__(self, app: Application, *args, **kwargs):
         self.app = app
         self.logger = getLogger("accessor")
+        app.register_accessor(self.connect)
+        app.register_cleanup(self.disconnect)
 
-        app.on_startup.append(self.connect)
-        app.on_cleanup.append(self.disconnect)
-
-    async def connect(self, app: "Application"):
+    async def connect(self, app: Application):
         return
 
-    async def disconnect(self, app: "Application"):
+    async def disconnect(self, app: Application):
         return

@@ -4,12 +4,12 @@ from dataclasses import dataclass
 import yaml
 
 if typing.TYPE_CHECKING:
-    from app.web.app import Application
+    from app.web.models.application import Application
 
 
 @dataclass
 class SessionConfig:
-    pass
+    key: str
 
 
 @dataclass
@@ -20,24 +20,31 @@ class AdminConfig:
 
 @dataclass
 class BotConfig:
-    pass
+    token: str
+    group_id: str
 
 
 @dataclass
 class Config:
     admin: AdminConfig
-    session: SessionConfig | None = None
-    bot: BotConfig | None = None
+    session: SessionConfig
+    bot: BotConfig
 
 
 def setup_config(app: "Application", config_path: str):
-    # TODO: добавить BotConfig и SessionConfig по данным из config.yml
     with open(config_path, "r") as f:
-        raw_config = yaml.safe_load(f)
+        config = yaml.safe_load(f)
 
     app.config = Config(
         admin=AdminConfig(
-            email=raw_config["admin"]["email"],
-            password=raw_config["admin"]["password"],
+            email=config["admin"]["email"],
+            password=config["admin"]["password"],
+        ),
+        bot=BotConfig(
+            token=config["bot"]["token"],
+            group_id=config["bot"]["group_id"],
+        ),
+        session=SessionConfig(
+            key=config["session"]["key"],
         ),
     )

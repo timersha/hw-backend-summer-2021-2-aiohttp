@@ -9,3 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - run: docker run --entrypoint /bin/bash -e GITHUB_REPOSITORY -e GITHUB_REF --mount src="$(pwd)",target=/go/code/source,type=bind ${{ env.IMAGE }} -c "mv build/main source && cd source && ./main"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - name: Install dependencies
+        run: uv sync

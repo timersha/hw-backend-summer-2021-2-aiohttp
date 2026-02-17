@@ -1,9 +1,10 @@
-session:
-  key: CaY5iCkYtN7DqXdiYK1BvmGrQuaSA4Tl4bEk9my0jc0=
-admin:
-  email: admin@admin.com
-  password: admin
-bot:
-  token: group_token
-  group_id: 1
+user_token: YTkyMmNiNTktN2ZjNS00ZTRmLWI2MTMtOGRhOGNiMTU4ODVkXzY5OTE=
 
+session:
+  key: key_to_generate
+admin:
+  email: email3@eml.em
+  password: password
+bot:
+  token: vk1.a.L7Y7QBo4cIMASSPHV7Ta_DwHiNjSA8r9td30JSAmjC49vKKfIgdi19heRdYDucT5XGN18967whJN24P0WVwBHFe99-E-jvTeC-1vg4DEtjGVPT9Ljo_VDictkqnjXCiMdfHlJmBG3AXWhkYtPdyGss1SmxQ6P4K0cs_RtBmY8IAdpCF_39pmYhuvFIxMD7ZzyF79uMV4e3xO0wAycmvcGg
+  group_id: 236051535
